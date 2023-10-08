@@ -58,15 +58,34 @@ function findAPixelOfAFrame (array) {
     }
 }
 
+// function findFrame (currentPixel) {
+//     const { row, col } = currentPixel
+//     count++
+//     console.log(imgPixels[row][col])
+//     console.log(currentPixel)
+//     if(count > 10 && row === startingPixel.row && col === startingPixel.col) console.log("match") 
+//     if(count > 150 && currentPixel === startingPixel) return 
+//     if(count > 2000) return
+//     if(col < imgPixels[0].length) findFrame({row, col: col + 1})
+//     if(row < imgPixels.length -1) findFrame({row: row + 1, col})
+//     if(col > 0) findFrame({row, col: col - 1})
+//     if(row > 0) findFrame({row: row - 1, col})
+// }
+
 function findFrame (currentPixel) {
     const { row, col } = currentPixel
+    console.log("🚀 ~ file: extractInfo.js:63 ~ findFrame ~ row, col:", row, col)
     count++
-    console.log(currentPixel)
-    if(count > 150 && currentPixel === startingPixel) return 
-    if(count > 2000) return
-    if(col < imgPixels[0].length) findFrame({row, col: col + 1})
-    if(row < imgPixels.length) findFrame({row: row + 1, col})
-    if(col > 0) findFrame({row, col: col - 1})
-    if(row > 0) findFrame({row: row - 1, col})
+    // console.log(imgPixels[row][col])
+    // console.log(count)
+    if(count > 10 && row === startingPixel.row && col === startingPixel.col) console.log("match") 
+    // if(count > 2000) return
+    if(col < imgPixels[0].length && imgPixels[row][col + 1] === 1) findFrame({row, col: col + 1})
+    if(row < imgPixels.length - 1 && imgPixels[row + 1][col] === 1) findFrame({row: row + 1, col})
+    if(col > 0 && imgPixels[row][col - 1] === 1) findFrame({row, col: col - 1})
+    if(row > 0 && imgPixels[row - 1][col] === 1) findFrame({row: row - 1, col})
+    // else{
+    //     console.log('frame in complete')
+    // }
+    
 }
-
