@@ -4,6 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frame Detector</title>
+    <style>
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(150, 1fr);
+            grid-template-rows: repeat(150, 1fr);
+            gap: 1px;
+        }
+        .cell {
+            width: 5px;
+            height: 5px;
+            background-color: #ccc;
+            border: 1px solid #fff;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        td {
+            /* width: 5px;
+            height: 5px; */
+            width: 3px;
+            height: 3px;
+            border: 1px solid #ccc;
+        }
+        .visited {
+            animation-name: visitedAnimation;
+            animation-duration: 1.5s;
+            animation-timing-function: ease-out;
+            animation-delay: 0;
+            animation-direction: alternate;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+            animation-play-state: running;
+        }
+
+        @keyframes visitedAnimation {
+            0% {
+                transform: scale(0.3);
+                background-color: rgba(0, 0, 66, 0.75);
+                border-radius: 100%;
+            }
+
+            50% {
+                background-color: rgba(17, 104, 217, 0.75);
+            }
+
+            75% {
+                transform: scale(1.2);
+                background-color: rgba(0, 217, 159, 0.75);
+            }
+
+            100% {
+                transform: scale(1);
+                background-color: rgba(0, 190, 218, 0.75);
+            }
+        }
+
+        .frame {
+            background-color: #032547;
+        }
+
+        .shortest-path {
+            animation-name: shortestPath;
+            animation-duration: 1.5s;
+            animation-timing-function: ease-out;
+            animation-delay: 0;
+            animation-direction: alternate;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+            animation-play-state: running;
+        }
+
+        @keyframes shortestPath {
+            0% {
+                transform: scale(0.6);
+                background-color: rgb(255, 254, 106);
+            }
+
+            50% {
+                transform: scale(1.2);
+                background-color: rgb(255, 254, 106);
+            }
+
+            100% {
+                transform: scale(1);
+                background-color: rgb(255, 254, 106);
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="frame">
@@ -12,6 +100,7 @@
             <button id="submitButton" type="submit">Submit</button>
         </form>
         <canvas id="imageCanvas" height="150" width="150"></canvas>
+        <div id="frameGrid"></div>
     </div>
     <script type="text/javascript" src="./extractInfo.js"></script>
 </body>
