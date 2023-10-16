@@ -18,12 +18,13 @@ let frameFlag = false
     //     for (let j = 0; j < 150; j++) {
     //         const cell = document.createElement('div');
     //         cell.classList.add('cell');
+    //         cell.classList.add('cell');
     //         frameGrid.appendChild(cell);
     //     }
     // }
-    for (let i = 0; i < 150; i++) {
+    for (let i = 0; i < 15; i++) {
         const row = document.createElement('tr');
-        for (let j = 0; j < 150; j++) {
+        for (let j = 0; j < 15; j++) {
             const cell = document.createElement('td');
             cell.id = `cell-${i}-${j}`
             row.appendChild(cell);
