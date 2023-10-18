@@ -60,6 +60,41 @@
             }
         }
 
+        .finding {
+            background-color: red;
+            animation-name: fingingAnimation;
+            animation-duration: 1.5s;
+            animation-timing-function: ease-out;
+            animation-delay: 0;
+            animation-direction: alternate;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+            animation-play-state: running;
+            /* animation-play-state: running; */
+        }
+
+        @keyframes findingAnimation {
+            0% {
+                transform: scale(0.3);
+                background-color: rgba(51, 9, 33, 0.75);
+                border-radius: 100%;
+            }
+
+            50% {
+                background-color: rgba(221, 54, 123, 0.75);
+            }
+
+            75% {
+                transform: scale(1.2);
+                background-color: rgba(14, 92, 238, 0.75);
+            }
+
+            100% {
+                transform: scale(1);
+                background-color: rgba(218, 0, 153, 0.75);
+            }
+        }
+
         .frame {
             background-color: #032547;
         }

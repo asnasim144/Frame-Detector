@@ -22,9 +22,9 @@ let frameFlag = false
     //         frameGrid.appendChild(cell);
     //     }
     // }
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 76; i++) {
         const row = document.createElement('tr');
-        for (let j = 0; j < 15; j++) {
+        for (let j = 0; j < 76; j++) {
             const cell = document.createElement('td');
             cell.id = `cell-${i}-${j}`
             row.appendChild(cell);
@@ -84,6 +84,8 @@ function findAPixelOfAFrame (array) {
             if(array[i][j].alpha === 1 && array[i][j].visited !== 'visited') {
                 // count++
                 console.log(array[i][j])
+                const currentCell = document.getElementById(`cell-${i}-${j}`);
+                currentCell.classList.add('finding')
                 return {
                     row: i,
                     col: j,
@@ -114,9 +116,11 @@ function findFrame (currentPixel) {
 function handleFindFrame (rowColObj) {
     const { row, col } = rowColObj
     // console.log("🚀 ~ file: extractInfo.js:84 ~ handleFindFrame ~ rowColObj:", rowColObj)
-    imgPixels[row][col].visited = 'visited'
-    // const currentCell = document.getElementById(`cell-${i}-${j}`);
-    // currentCell.classList.add('visited')
+    setTimeout(() => {
+        imgPixels[row][col].visited = 'visited'
+        const currentCell = document.getElementById(`cell-${col}-${row}`);
+        currentCell.classList.add('visited')
+    }, 200);
     findFrame(rowColObj)
 }
 
