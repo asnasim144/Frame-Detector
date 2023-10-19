@@ -4,11 +4,11 @@ console.log("🚀 ~ file: extractInfo.js:3 ~ canvas:", canvas)
 const form = document.getElementById('form')
 const context = canvas.getContext('2d')
 let imgPixels = []
-const heigth = 150
-const width = 150
+const heigth = 50
+const width = 50
 let count = 0
 let startingPixel = {}
-let framesCount = 0
+let framesCount = 0.1
 let frameFlag = false
 
 // window.onload = () => {
@@ -22,9 +22,9 @@ let frameFlag = false
     //         frameGrid.appendChild(cell);
     //     }
     // }
-    for (let i = 0; i < 76; i++) {
+    for (let i = 0; i < 50; i++) {
         const row = document.createElement('tr');
-        for (let j = 0; j < 76; j++) {
+        for (let j = 0; j < 50; j++) {
             const cell = document.createElement('td');
             cell.id = `cell-${i}-${j}`
             row.appendChild(cell);
@@ -78,14 +78,16 @@ form.onsubmit = (e) => {
 }
 
 function findAPixelOfAFrame (array) {
-    console.log('finding starting of a frame', count)
+    // console.log('finding starting of a frame', count)
+    // console.log("🚀 ~ file: extractInfo.js:83 ~ findAPixelOfAFrame ~ array[0].length - 1:", array[0].length - 1)
+    // console.log("🚀 ~ file: extractInfo.js:85 ~ findAPixelOfAFrame ~ array.length - 1:", array.length - 1)
     for(let i=0; i < array[0].length - 1; i++) {
         for(let j=0; j < array.length - 1; j++) {
+            const currentCell = document.getElementById(`cell-${i}-${j}`);
+            currentCell.classList.add('finding')
+            // console.log(i,j)
             if(array[i][j].alpha === 1 && array[i][j].visited !== 'visited') {
                 // count++
-                console.log(array[i][j])
-                const currentCell = document.getElementById(`cell-${i}-${j}`);
-                currentCell.classList.add('finding')
                 return {
                     row: i,
                     col: j,
@@ -95,33 +97,42 @@ function findAPixelOfAFrame (array) {
     }
 }
 
+console.log("frames count", framesCount)
 function findFrame (currentPixel) {
     const { row, col } = currentPixel
+    // console.log("🚀 ~ file: extractInfo.js:100 ~ findFrame ~ currentPixel:", currentPixel)
     count++
+    // console.log("🚀 ~ file: extractInfo.js:104 ~ findFrame ~ count:", count)
     // console.log(imgPixels[row][col])
     // console.log(currentPixel)
     if(count > 10 && row === startingPixel.row && col === startingPixel.col){
-        framesCount += 1
+        framesCount++
         console.log("frames count", framesCount)
-        return true
+        return printFrameCount(framesCount)
     } 
     // if(count > 150 && currentPixel === startingPixel) return 
-    if(count > 3000) return false
+    // if(count > 3000) return false
     // console.log(currentPixel)
-    if(col < imgPixels[0].length -1 && imgPixels[row][col + 1].alpha === 1) handleFindFrame({row, col: col + 1})
     if(row < imgPixels.length -1 && imgPixels[row + 1][col].alpha === 1) handleFindFrame({row: row + 1, col})
-    if(col > 0 && imgPixels[row][col - 1].alpha === 1) handleFindFrame({row, col: col - 1})
     if(row > 0 && imgPixels[row - 1][col].alpha === 1) handleFindFrame({row: row - 1, col})
+    if(col > 0 && imgPixels[row][col - 1].alpha === 1) handleFindFrame({row, col: col - 1})
+    if(col < imgPixels[0].length -1 && imgPixels[row][col + 1].alpha === 1) handleFindFrame({row, col: col + 1})
+    else return printFrameCount("no frame")
 }
 function handleFindFrame (rowColObj) {
     const { row, col } = rowColObj
-    // console.log("🚀 ~ file: extractInfo.js:84 ~ handleFindFrame ~ rowColObj:", rowColObj)
+    console.log("🚀 ~ file: extractInfo.js:84 ~ handleFindFrame ~ rowColObj:", rowColObj)
     setTimeout(() => {
+        // console.log("🚀 ~ file: extractInfo.js:119 ~ setTimeout ~ rowColObj:", rowColObj)
         imgPixels[row][col].visited = 'visited'
         const currentCell = document.getElementById(`cell-${col}-${row}`);
         currentCell.classList.add('visited')
+        findFrame(rowColObj)
     }, 200);
-    findFrame(rowColObj)
+}
+
+function printFrameCount (framesCount) {
+    console.log("🚀 ~ file: extractInfo.js:134 ~ printFrameCount ~ framesCount:", framesCount)
 }
 
 
