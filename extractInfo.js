@@ -112,7 +112,6 @@ function findFrame (currentPixel) {
     } 
     // if(count > 150 && currentPixel === startingPixel) return 
     // if(count > 3000) return false
-    // console.log(currentPixel)
     if(row < imgPixels.length -1 && imgPixels[row + 1][col].alpha === 1) handleFindFrame({row: row + 1, col})
     if(row > 0 && imgPixels[row - 1][col].alpha === 1) handleFindFrame({row: row - 1, col})
     if(col > 0 && imgPixels[row][col - 1].alpha === 1) handleFindFrame({row, col: col - 1})
