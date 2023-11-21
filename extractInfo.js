@@ -107,6 +107,7 @@ function findFrame (currentPixel) {
     // console.log(currentPixel)
     // console.log(currentPixel)
     // console.log(currentPixel)
+    // console.log(currentPixel)
     if(count > 10 && row === startingPixel.row && col === startingPixel.col){
         framesCount++
         console.log("frames count", framesCount)
