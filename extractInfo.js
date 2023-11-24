@@ -80,7 +80,6 @@ form.onsubmit = (e) => {
 function findAPixelOfAFrame (array) {
     // console.log('finding starting of a frame', count)
     // console.log("🚀 ~ file: extractInfo.js:83 ~ findAPixelOfAFrame ~ array[0].length - 1:", array[0].length - 1)
-    // console.log("🚀 ~ file: extractInfo.js:85 ~ findAPixelOfAFrame ~ array.length - 1:", array.length - 1)
     for(let i=0; i < array[0].length - 1; i++) {
         for(let j=0; j < array.length - 1; j++) {
             const currentCell = document.getElementById(`cell-${i}-${j}`);
