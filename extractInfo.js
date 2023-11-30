@@ -85,7 +85,6 @@ function findAPixelOfAFrame (array) {
             const currentCell = document.getElementById(`cell-${i}-${j}`);
             currentCell.classList.add('finding')
             // console.log(i,j)
-            // console.log(i,j)
             if(array[i][j].alpha === 1 && array[i][j].visited !== 'visited') {
                 // count++
                 return {
