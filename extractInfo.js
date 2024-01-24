@@ -90,7 +90,6 @@ function findAPixelOfAFrame (array) {
             // console.log(i,j)
             // console.log(i,j)
             // console.log(i,j)
-            // console.log(i,j)
             if(array[i][j].alpha === 1 && array[i][j].visited !== 'visited') {
                 // count++
                 return {
